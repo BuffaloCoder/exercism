@@ -59,6 +59,6 @@ var squareTests = []struct {
 	{
 		description: "square greater than 64 returns an error",
 		input:       65,
-		expectError: true,
+		expectedVal: 0,
 	},
 }

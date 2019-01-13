@@ -13,10 +13,10 @@ func Valid(toValidate string) bool {
 		char := rune(toValidate[i])
 		// If the char is anything but a number or a space, fail the assertion.
 		// Otherwise, if it's a space, then skip to the next char.
+		if unicode.IsSpace(char) {
+			continue
+		}
 		if !unicode.IsNumber(char) {
-			if char == ' ' {
-				continue
-			}
 			return false
 		}
 
