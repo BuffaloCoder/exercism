@@ -7,17 +7,41 @@ import (
 	"time"
 )
 
-// maintains our list of consumed names
-var robotNames = map[string]bool{
-	"": true,
-}
-var usedNameCount int
-
+const maxCount int = 26 * 26 * 10 * 10 * 10
 const letterOffset rune = 'A'
+
+const firstLetterBase int = 26000
+const secondLetterBase int = 1000
+
+// maintains our list of available names
+var availNameIDs []int
+var availIDCount = maxCount
 
 // Robot represents a robot with a given name
 type Robot struct {
 	name string
+}
+
+func init() {
+	availNameIDs = make([]int, maxCount)
+	for i := 0; i < maxCount; i++ {
+		availNameIDs[i] = i
+	}
+}
+
+func getNameFromID(id int) string {
+	// Generate the letters, which are determined by the offset from their
+	// starting (base) positions. Ex. if the id is 26000, that means theres a
+	// "1" in the firstLetter place, so you add a one to A and get B (but the
+	// rest will be the starting "0" positions)
+	// Note: the idea for this way of getting a name came from the example code
+	// on the github page (though re-implemented)
+	firstLetter := letterOffset + rune(id/firstLetterBase)
+	remainder := id % firstLetterBase
+	secondLetter := letterOffset + rune(remainder/secondLetterBase)
+	number := remainder % secondLetterBase
+
+	return fmt.Sprintf("%s%s%03d", string(firstLetter), string(secondLetter), number)
 }
 
 // Name will either return the robot's name if it exists, or will generate a
@@ -27,27 +51,19 @@ func (r *Robot) Name() (string, error) {
 		return r.name, nil
 	}
 
-	if usedNameCount == 26*26*10*10*10 {
+	if availIDCount == 0 {
 		return "", errors.New("All names haves been requested")
 	}
-	// If it has, then we should increment the name to the next available name.
-	// This is done to avoid a possible near-infinite loop with generating continously
-	// random names, and is relatively random since collisions should not be common and
-	// the base string is random
-	for robotNames[r.name] {
-		rand.Seed(time.Now().UnixNano())
-		firstLetter := letterOffset + rune(rand.Intn(26))
-		secondLetter := letterOffset + rune(rand.Intn(26))
-		number := rand.Intn(1000)
 
-		r.name = fmt.Sprintf("%s%s%03d", string(firstLetter), string(secondLetter), number)
-	}
+	// Select a random id from the remaining ids
+	rand.Seed(time.Now().UnixNano())
+	idIndex := rand.Intn(availIDCount)
+	r.name = getNameFromID(availNameIDs[idIndex])
 
-	robotNames[r.name] = true
-	usedNameCount++
-	if usedNameCount%1000 == 0 {
-		fmt.Println(usedNameCount)
-	}
+	// "Remove" the last taken id by swapping it with the current last position and
+	// decrementing the counter. This way we don't have to worry about reallocation.
+	availNameIDs[idIndex], availNameIDs[availIDCount-1] = availNameIDs[availIDCount-1], availNameIDs[idIndex]
+	availIDCount--
 	return r.name, nil
 }
 
