@@ -1,2 +1,4 @@
 .vscode/
 .exercism/
+.pytest_cache/
+

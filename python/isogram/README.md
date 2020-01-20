@@ -1,16 +1,17 @@
-# High Scores
+# Isogram
 
-Manage a game player's High Score list.
+Determine if a word or phrase is an isogram.
 
-Your task is to build a high-score component of the classic Frogger game, one of the highest selling and addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
+An isogram (also known as a "nonpattern word") is a word or phrase without a repeating letter, however spaces and hyphens are allowed to appear multiple times.
 
-In this exercise, you're going to use and manipulate lists. Python lists are very versatile, and you'll find yourself using them again and again in problems both simple and complex.
+Examples of isograms:
 
-- [**Data Structures (Python 3 Documentation Tutorial)**](https://docs.python.org/3/tutorial/datastructures.html)
-- [**Lists and Tuples in Python (Real Python)**](https://realpython.com/python-lists-tuples/)
-- [**Python Lists (Google for Education)**](https://developers.google.com/edu/python/lists)
+- lumberjacks
+- background
+- downstream
+- six-year-old
 
-
+The word *isograms*, however, is not an isogram, because the s repeats.
 
 ## Exception messages
 
@@ -30,11 +31,11 @@ raise Exception("Meaningful message indicating the source of the error")
 
 To run the tests, run the appropriate command below ([why they are different](https://github.com/pytest-dev/pytest/issues/1629#issue-161422224)):
 
-- Python 2.7: `py.test high_scores_test.py`
-- Python 3.4+: `pytest high_scores_test.py`
+- Python 2.7: `py.test isogram_test.py`
+- Python 3.4+: `pytest isogram_test.py`
 
 Alternatively, you can tell Python to run the pytest module (allowing the same command to be used regardless of Python version):
-`python -m pytest high_scores_test.py`
+`python -m pytest isogram_test.py`
 
 ### Common `pytest` options
 
@@ -46,7 +47,7 @@ For other options, see `python -m pytest -h`
 
 ## Submitting Exercises
 
-Note that, when trying to submit an exercise, make sure the solution is in the `$EXERCISM_WORKSPACE/python/high-scores` directory.
+Note that, when trying to submit an exercise, make sure the solution is in the `$EXERCISM_WORKSPACE/python/isogram` directory.
 
 You can find your Exercism workspace by running `exercism debug` and looking for the line that starts with `Workspace`.
 
@@ -55,7 +56,7 @@ please see [Running the Tests](http://exercism.io/tracks/python/tests).
 
 ## Source
 
-Tribute to the eighties' arcade game Frogger
+Wikipedia [https://en.wikipedia.org/wiki/Isogram](https://en.wikipedia.org/wiki/Isogram)
 
 ## Submitting Incomplete Solutions
 

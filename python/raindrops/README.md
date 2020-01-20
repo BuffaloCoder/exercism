@@ -1,16 +1,21 @@
-# High Scores
+# Raindrops
 
-Manage a game player's High Score list.
+Convert a number to a string, the contents of which depend on the number's factors.
 
-Your task is to build a high-score component of the classic Frogger game, one of the highest selling and addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
+- If the number has 3 as a factor, output 'Pling'.
+- If the number has 5 as a factor, output 'Plang'.
+- If the number has 7 as a factor, output 'Plong'.
+- If the number does not have 3, 5, or 7 as a factor,
+  just pass the number's digits straight through.
 
-In this exercise, you're going to use and manipulate lists. Python lists are very versatile, and you'll find yourself using them again and again in problems both simple and complex.
+## Examples
 
-- [**Data Structures (Python 3 Documentation Tutorial)**](https://docs.python.org/3/tutorial/datastructures.html)
-- [**Lists and Tuples in Python (Real Python)**](https://realpython.com/python-lists-tuples/)
-- [**Python Lists (Google for Education)**](https://developers.google.com/edu/python/lists)
-
-
+- 28's factors are 1, 2, 4, **7**, 14, 28.
+  - In raindrop-speak, this would be a simple "Plong".
+- 30's factors are 1, 2, **3**, **5**, 6, 10, 15, 30.
+  - In raindrop-speak, this would be a "PlingPlang".
+- 34 has four factors: 1, 2, 17, and 34.
+  - In raindrop-speak, this would be "34".
 
 ## Exception messages
 
@@ -30,11 +35,11 @@ raise Exception("Meaningful message indicating the source of the error")
 
 To run the tests, run the appropriate command below ([why they are different](https://github.com/pytest-dev/pytest/issues/1629#issue-161422224)):
 
-- Python 2.7: `py.test high_scores_test.py`
-- Python 3.4+: `pytest high_scores_test.py`
+- Python 2.7: `py.test raindrops_test.py`
+- Python 3.4+: `pytest raindrops_test.py`
 
 Alternatively, you can tell Python to run the pytest module (allowing the same command to be used regardless of Python version):
-`python -m pytest high_scores_test.py`
+`python -m pytest raindrops_test.py`
 
 ### Common `pytest` options
 
@@ -46,7 +51,7 @@ For other options, see `python -m pytest -h`
 
 ## Submitting Exercises
 
-Note that, when trying to submit an exercise, make sure the solution is in the `$EXERCISM_WORKSPACE/python/high-scores` directory.
+Note that, when trying to submit an exercise, make sure the solution is in the `$EXERCISM_WORKSPACE/python/raindrops` directory.
 
 You can find your Exercism workspace by running `exercism debug` and looking for the line that starts with `Workspace`.
 
@@ -55,7 +60,7 @@ please see [Running the Tests](http://exercism.io/tracks/python/tests).
 
 ## Source
 
-Tribute to the eighties' arcade game Frogger
+A variation on a famous interview question intended to weed out potential candidates. [http://jumpstartlab.com](http://jumpstartlab.com)
 
 ## Submitting Incomplete Solutions
 
